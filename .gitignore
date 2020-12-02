@@ -1,0 +1,3 @@
+.DS_Store
+kafka/data/*
+rabbitmq/rabbitmq-isolated.conf
