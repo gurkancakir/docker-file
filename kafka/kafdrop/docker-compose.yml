@@ -30,14 +30,12 @@ services:
       - ./data/kafka/data:/var/lib/kafka/data
     depends_on:
       - zookeeper
-  kowl:
-    image: quay.io/cloudhut/kowl:master
-    restart: on-failure
-    hostname: kowl
-    volumes:
-      - ./config.yaml:/etc/kowl/config.yaml
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    restart: "no"
     ports:
-      - "8005:8080"
-    entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:19091"
     depends_on:
       - kafka
